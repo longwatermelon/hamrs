@@ -105,8 +105,3 @@ pub fn collect_next_token(lexer: &mut Lexer) -> Token {
 
     return Token{ token_type: TokenType::Eof, value: String::from("") };
 }
-
-pub fn test(lexer: &mut Lexer) {
-    lexer.index = 1930258;
-}
-
