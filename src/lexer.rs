@@ -1,4 +1,4 @@
-#[derive(PartialEq)]
+#[derive(PartialEq, Clone, Copy)]
 pub enum TokenType {
     Id,
     Semi,
@@ -11,11 +11,13 @@ pub enum TokenType {
     Eof,
 }
 
+#[derive(Clone)]
 pub struct Token {
     pub token_type: TokenType,
     pub value: String
 }
 
+#[derive(Clone)]
 pub struct Lexer {
     pub current_char: char,
     pub index: usize,
@@ -104,5 +106,9 @@ pub fn collect_next_token(lexer: &mut Lexer) -> Token {
     }
 
     return Token{ token_type: TokenType::Eof, value: String::from("") };
+}
+
+pub fn test(lexer: &mut Lexer) {
+    lexer.index = 1930258;
 }
 
