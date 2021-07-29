@@ -1,5 +1,7 @@
 # hamrs
-My first time writing rust
+My first time writing rust.
+
+It works, but it's probably bad code.
 
 # Building and running
 ```
