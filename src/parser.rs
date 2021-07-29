@@ -26,7 +26,7 @@ pub fn eat(parser: &mut Parser, t: lexer::TokenType) {
         parser.prev_token = parser.current_token.clone();
         parser.current_token = lexer::collect_next_token(&mut parser.lexer);
     } else {
-        panic!("Unexpected token {} at line {} char {}", parser.current_token.value, parser.lexer.line_num, parser.lexer.index);
+        panic!("Unexpected token {} at line {}", parser.current_token.value, parser.lexer.line_num);
     }
 }
 
