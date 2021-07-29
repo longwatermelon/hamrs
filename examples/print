@@ -1,6 +1,6 @@
 pront("lel");
 pront("lelaroos");
 
-def x = 1
+def x = 1;
 pront(x, x, "lel");
 

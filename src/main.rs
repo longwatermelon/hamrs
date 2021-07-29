@@ -3,11 +3,11 @@ mod node;
 mod parser;
 mod visitor;
 
-// use std::env;
+use std::env;
 // use std::fs;
 
 fn main() {
-    // let args: Vec<String> = env::args().collect();
+    let args: Vec<String> = env::args().collect();
     // let contents = fs::read_to_string(args[1].as_str()).expect("Couldn't open file");
 
     // let mut lexer = lexer::init_lexer(String::from(contents.as_str()));
@@ -26,7 +26,7 @@ fn main() {
 
     // println!("Finished");
 
-    let mut parser = parser::init_parser(String::from("examples/print"));
+    let mut parser = parser::init_parser(args[1].clone());
     let mut visitor = visitor::init_visitor();
 
     unsafe {
