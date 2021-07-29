@@ -98,11 +98,9 @@ pub fn collect_next_token(lexer: &mut Lexer) -> Token {
             '(' => { advance(lexer); return Token{ token_type: TokenType::Lparen, value: String::from("(") } },
             ')' => { advance(lexer); return Token{ token_type: TokenType::Rparen, value: String::from(")") } },
             ',' => { advance(lexer); return Token{ token_type: TokenType::Comma, value: String::from(",") } },
-            _ => println!("Unrecognized token {}", String::from(lexer.current_char).as_str()),
+            '\n' => { advance(lexer); lexer.line_num += 1; },
+            _ => println!("Unrecognized token '{}' on line {}", String::from(lexer.current_char).as_str(), lexer.line_num),
         }
-
-        advance(lexer);
-        lexer.line_num += 1;
     }
 
     return Token{ token_type: TokenType::Eof, value: String::from("") };

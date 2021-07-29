@@ -1,6 +1,7 @@
 mod lexer;
 mod node;
 mod parser;
+mod visitor;
 
 // use std::env;
 // use std::fs;
@@ -26,10 +27,13 @@ fn main() {
     // println!("Finished");
 
     let mut parser = parser::init_parser(String::from("examples/print"));
+    let mut visitor = visitor::init_visitor();
 
     unsafe {
         let root = parser::parse(&mut parser);
-        println!("{}", (*(*root).compound_value[0]).function_call_name.as_str());
-        println!("{}", (*(*(*root).compound_value[0]).function_call_args[0]).string_value.as_str());
+        visitor::visit(&mut visitor, root);
+
+        // println!("{}", (*(*root).compound_value[0]).function_call_name.as_str());
+        // println!("{}", (*(*(*root).compound_value[0]).function_call_args[0]).string_value.as_str());
     }
 }
