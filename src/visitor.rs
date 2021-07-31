@@ -19,8 +19,7 @@ pub unsafe fn visit(visitor: &mut Visitor, node: *mut node::Node) -> *mut node::
         node::NodeType::FunctionCall => return visit_function_call(visitor, node),
         node::NodeType::Str => return node,
         node::NodeType::Int => return node,
-        node::NodeType::Compound => return visit_compound(visitor, node),
-        node::NodeType::Noop => return node,
+        node::NodeType::Compound => return visit_compound(visitor, node)
     }
 }
 

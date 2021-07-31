@@ -5,8 +5,7 @@ pub enum NodeType {
     FunctionCall,
     Int,
     Str,
-    Compound,
-    Noop
+    Compound
 }
 
 pub struct Node {
@@ -45,5 +44,27 @@ pub fn init_node(t: NodeType) -> *mut Node {
         int_value: 0,
         compound_value: Vec::new()
     }));
+}
+
+pub unsafe fn cleanup_node(node: *mut Node) {
+    if node == 0 as *mut Node { return; }
+
+    if (*node).variable_definition_value != 0 as *mut Node {
+        cleanup_node((*node).variable_definition_value);
+    }
+
+    if !(*node).function_call_args.is_empty() {
+        for i in 0..(*node).function_call_args.len() {
+            cleanup_node((*node).function_call_args[i]);
+        }
+    }
+
+    if !(*node).compound_value.is_empty() {
+        for i in 0..(*node).compound_value.len() {
+            cleanup_node((*node).compound_value[i]);
+        }
+    }
+
+    std::mem::drop(Box::from_raw(node));
 }
 

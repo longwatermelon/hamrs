@@ -32,6 +32,7 @@ fn main() {
     unsafe {
         let root = parser::parse(&mut parser);
         visitor::visit(&mut visitor, root);
+        node::cleanup_node(root);
 
         // println!("{}", (*(*root).compound_value[0]).function_call_name.as_str());
         // println!("{}", (*(*(*root).compound_value[0]).function_call_args[0]).string_value.as_str());
