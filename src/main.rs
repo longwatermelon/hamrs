@@ -8,6 +8,10 @@ use std::env;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
+    if args.len() == 1 {
+        panic!("No file specified");
+    }
+
     // let contents = fs::read_to_string(args[1].as_str()).expect("Couldn't open file");
 
     // let mut lexer = lexer::init_lexer(String::from(contents.as_str()));
